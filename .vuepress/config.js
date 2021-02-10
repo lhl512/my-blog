@@ -28,6 +28,19 @@ module.exports = {
         "icon": "reco-home"
       },
       {
+        "text": "nodes",
+        "icon": "reco-document",
+        "items": [{
+            "text": "html",
+            "link": "/nodes/html/",
+          },
+          {
+            "text": "css",
+            "link": "/nodes/css/",
+          }
+        ]
+      },
+      {
         "text": "TimeLine",
         "link": "/timeline/",
         "icon": "reco-date"
@@ -57,19 +70,55 @@ module.exports = {
         "theme",
         "plugin",
         "api"
-      ]
+      ],
+      "/nodes/html/": [
+        "",
+        'html',
+        'html-one',
+        'html5'
+      ],
+      // "/nodes/css": [
+      //   "",
+      //   "css",
+      //   "css2",
+      //   "css3",
+
+      // ]
+      // "/nodes/": [
+      //   "",
+      //   {
+      //     "title": "html",
+      //     "collapsable": true,
+      //     "children": [
+      //       '/html/',
+      //       'html',
+      //       'html-one'
+      //     ]
+      //   },
+      //   {
+      //     "title": "css",
+      //     "collapsable": true,
+      //     "children": [
+      //       '/css/',
+      //       '/css/css',
+      //     ]
+      //   },
+      // ]
     },
+    // 分类
     "type": "blog",
     "blogConfig": {
       "category": {
         "location": 2,
         "text": "Category"
       },
+      // 标签
       "tag": {
         "location": 3,
         "text": "Tag"
       }
     },
+    // 友情链接
     "friendLink": [{
         "title": "午后南杂",
         "desc": "Enjoy when you can, and endure when you must.",
