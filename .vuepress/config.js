@@ -30,29 +30,29 @@ module.exports = {
       {
         "text": "nodes",
         "icon": "reco-document",
+        "link": "/nodes/"
+      },
+      {
+        "text": "tools",
+        "icon": "reco-other",
         "items": [{
-            "text": "html",
-            "link": "/nodes/html/",
-          },
-          {
-            "text": "css",
-            "link": "/nodes/css/",
-          }
-        ]
+          "text": "MDN Wed 文档",
+          "link": "https://developer.mozilla.org/zh-CN",
+        }]
       },
       {
         "text": "TimeLine",
         "link": "/timeline/",
         "icon": "reco-date"
       },
-      {
-        "text": "Docs",
-        "icon": "reco-message",
-        "items": [{
-          "text": "vuepress-reco",
-          "link": "/docs/theme-reco/"
-        }]
-      },
+      // {
+      //   "text": "Docs",
+      //   "icon": "reco-message",
+      //   "items": [{
+      //     "text": "vuepress-reco",
+      //     "link": "/docs/theme-reco/"
+      //   }]
+      // },
       {
         "text": "Contact",
         "icon": "reco-message",
@@ -71,43 +71,31 @@ module.exports = {
         "plugin",
         "api"
       ],
-      "/nodes/html/": [
-        "",
-        'html',
-        'html-one',
-        'html5'
-      ],
-      // "/nodes/css": [
-      //   "",
-      //   "css",
-      //   "css2",
-      //   "css3",
+      "/nodes/": [{
+          "title": "html",
+          "collapsable": true,
+          "children": [
+            '/nodes/html/html',
+            '/nodes/html/html-one',
+            "/nodes/html/html5"
+          ]
+        },
+        {
+          "title": "css",
+          "collapsable": true,
+          "children": [
+            "/nodes/css/css",
+            "/nodes/css/css2",
+            "/nodes/css/css3"
 
-      // ]
-      // "/nodes/": [
-      //   "",
-      //   {
-      //     "title": "html",
-      //     "collapsable": true,
-      //     "children": [
-      //       '/html/',
-      //       'html',
-      //       'html-one'
-      //     ]
-      //   },
-      //   {
-      //     "title": "css",
-      //     "collapsable": true,
-      //     "children": [
-      //       '/css/',
-      //       '/css/css',
-      //     ]
-      //   },
-      // ]
+          ]
+        },
+      ]
     },
-    // 分类
+
     "type": "blog",
     "blogConfig": {
+      // 分类
       "category": {
         "location": 2,
         "text": "Category"
@@ -116,7 +104,7 @@ module.exports = {
       "tag": {
         "location": 3,
         "text": "Tag"
-      }
+      },
     },
     // 友情链接
     "friendLink": [{
