@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: vuepress-theme-reco
-tagline: A simple and beautiful vuepress blog theme.
+# heroText: vuepress-theme-reco
+tagline: 乾坤未定，你我皆黑马
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',

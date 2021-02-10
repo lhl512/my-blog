@@ -102,7 +102,9 @@ module.exports = {
     "author": "爱敲代码のfox",
     // 右侧头像
     "authorAvatar": "/avatar.jpg",
-    "record": "xxxx",
+    // 备案号
+    "record": "爱敲代码のfox",
+    // 项目开始时间
     "startYear": "2021"
   },
   // 代码显示行数
@@ -136,5 +138,21 @@ module.exports = {
         recoverTime: 2000
       }
     ],
+    ["vuepress-plugin-nuggets-style-copy", {
+      copyText: "复制代码", //vuepress复制粘贴提示插件P 先安装在配置 npm install vuepress-plugin-nuggets-style-copy --save
+      tip: {
+        content: "复制成功!"
+      }
+    }],
+    [
+      //鼠标点击特效 先安装在配置， npm install vuepress-plugin-cursor-effects --save
+      "cursor-effects",
+      {
+        size: 3, // size of the particle, default: 2
+        shape: ['circle'], // shape of the particle, default: 'star'
+        zIndex: 999999999 // z-index property of the canvas, default: 999999999
+      }
+    ],
+    ["vuepress-reco/vuepress-plugin-loading-page"],
   ]
 }
