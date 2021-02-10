@@ -1,6 +1,6 @@
 module.exports = {
-  "title": "卓尔不凡",
-  "description": "卓尔不凡",
+  "title": "爱敲代码のfox",
+  "description": "乾坤未定,你我皆黑马",
   "dest": "public",
   "base": "/my-blog/",
   "head": [
@@ -21,6 +21,7 @@ module.exports = {
   ],
   "theme": "reco",
   "themeConfig": {
+    // 导航栏
     "nav": [{
         "text": "Home",
         "link": "/",
@@ -49,6 +50,7 @@ module.exports = {
         }]
       }
     ],
+    // 侧边栏
     "sidebar": {
       "/docs/theme-reco/": [
         "",
@@ -89,19 +91,27 @@ module.exports = {
       // placechoder:'来都来了，冒个泡再走呗...',
       // vsiitor:true,
     },
-    "logo": "/logo.png",
+    // logo
+    "logo": "/fox.jpg",
+    // 搜索设置
     "search": true,
     "searchMaxSuggestions": 10,
+    // 最后更新时间
     "lastUpdated": "Last Updated",
-    "author": "",
-    "authorAvatar": "/avatar.png",
+    // 作者
+    "author": "爱敲代码のfox",
+    // 右侧头像
+    "authorAvatar": "/avatar.jpg",
     "record": "xxxx",
-    "startYear": "2017"
+    "startYear": "2021"
   },
+  // 代码显示行数
   "markdown": {
     "lineNumbers": true
   },
+  // 插件
   "plugins": [
+    // 看板娘
     [
       "@vuepress-reco/vuepress-plugin-kan-ban-niang",
       {
@@ -113,6 +123,17 @@ module.exports = {
           theme: '好吧，希望你能喜欢我的其他小伙伴。',
           close: '再见哦'
         }
+      }
+    ],
+    [
+      //动态标题 先安装在配置， npm install vuepress-plugin-dynamic-title --save
+      "dynamic-title",
+      {
+        showIcon: "/favicon.ico",
+        showText: "(/≧▽≦/)咦！又好了！",
+        hideIcon: "/failure.ico",
+        hideText: "(●—●)喔哟，崩溃啦！",
+        recoverTime: 2000
       }
     ],
   ]

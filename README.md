@@ -11,8 +11,9 @@ tagline: A simple and beautiful vuepress blog theme.
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
+bgImage: '/bg.jpg'
 bgImageStyle: {
-  height: '450px'
+  height: '1000px'
 }
 isShowTitleInHome: false
 actionText: Guide
