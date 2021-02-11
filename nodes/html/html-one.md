@@ -5,7 +5,7 @@ date: 2021-01-11
 sidebar: auto  
 
 tags:
- - html
+ - HTML
 categories:
  -  html
 ---
@@ -34,7 +34,9 @@ categories:
 
 - 浏览器是网页显示、运行的平台。常用的浏览器有 IE、火狐（Firefox）、谷歌（Chrome）、Safari和Opera等。平时称为五大浏览器。
 
-  ![](X:\vuepressdeom\my-blog\.vuepress\public\img\html\浏览器.png)
+  ```md
+  [Image from alias](~@alias/浏览器.png)
+  ```
 
 #### 浏览器内核（渲染引擎）
 

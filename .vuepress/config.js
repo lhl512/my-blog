@@ -23,6 +23,13 @@ module.exports = {
       }
     ]
   ],
+  "configureWebpack": {
+    "resolve": {
+      "alias": {
+        '@alias': 'img'
+      }
+    }
+  },
   "theme": "reco",
   "themeConfig": {
     // 导航栏
