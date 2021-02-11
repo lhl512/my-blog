@@ -9,9 +9,8 @@ module.exports = {
             "title": "html",
             "collapsable": true,
             "children": [
-                '/nodes/html/html',
                 '/nodes/html/html-one',
-                "/nodes/html/html5"
+                '/nodes/html/html-two',
             ]
         },
         {
