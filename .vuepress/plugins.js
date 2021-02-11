@@ -40,4 +40,5 @@ module.exports = [
         }
     ],
     ["vuepress-reco/vuepress-plugin-loading-page"],
+    ['@vuepress/last-updated']
 ]
