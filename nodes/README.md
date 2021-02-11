@@ -24,3 +24,5 @@ sidebar: false
 ### JavaScript
 
 是一种由[Netscape](https://baike.baidu.com/item/Netscape)的[LiveScript](https://baike.baidu.com/item/LiveScript)发展而来的原型化继承的[面向对象](https://baike.baidu.com/item/面向对象)的动态类型的区分大小写的客户端[脚本语言](https://baike.baidu.com/item/脚本语言)，主要目的是为了解决服务器端语言，比如[Perl](https://baike.baidu.com/item/Perl)，遗留的速度问题，为客户提供更流畅的浏览效果。当时服务端需要对数据进行验证，由于[网络速度](https://baike.baidu.com/item/网络速度)相当缓慢，只有28.8kbps，验证步骤浪费的时间太多。于是Netscape的浏览器[Navigator](https://baike.baidu.com/item/Navigator)加入了Javascript，提供了[数据验证](https://baike.baidu.com/item/数据验证)的基本功能。
+
+![bg.jpg](/my-blog/bg.jpg)
