@@ -20,7 +20,10 @@ module.exports = {
                 "/nodes/css/css-01",
                 "/nodes/css/css-02",
                 "/nodes/css/css-03",
-
+                "/nodes/css/css-04",
+                "/nodes/css/css-05",
+                "/nodes/css/css-06",
+                "/nodes/css/css-07",
             ]
         },
     ]
