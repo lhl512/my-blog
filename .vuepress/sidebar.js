@@ -9,17 +9,17 @@ module.exports = {
             "title": "html",
             "collapsable": true,
             "children": [
-                '/nodes/html/html-one',
-                '/nodes/html/html-two',
+                '/nodes/html/html-01',
+                '/nodes/html/html-02',
             ]
         },
         {
             "title": "css",
             "collapsable": true,
             "children": [
-                "/nodes/css/css-one",
-                "/nodes/css/css-two",
-                "/nodes/css/css3"
+                "/nodes/css/css-01",
+                "/nodes/css/css-02",
+                "/nodes/css/css-03",
 
             ]
         },
