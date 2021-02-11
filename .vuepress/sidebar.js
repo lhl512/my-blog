@@ -18,7 +18,7 @@ module.exports = {
             "collapsable": true,
             "children": [
                 "/nodes/css/css-one",
-                "/nodes/css/css2",
+                "/nodes/css/css-two",
                 "/nodes/css/css3"
 
             ]
