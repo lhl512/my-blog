@@ -1,5 +1,5 @@
 ---
-title:  css-其他样式-浮动
+title:  css-vertical-align-文字省略号-常见布局技巧-初始化
 date: 2021-01-12
 sidebar: auto
 tags:
@@ -8,265 +8,242 @@ categories:
  -  css
 ---
 
-## 其他样式
+## 1.vertical-align 属性应用
 
-### 1、圆角边框
+CSS 的 **vertical-align** 属性使用场景： 经常用于设置图片或者表单(行内块元素）和文字垂直对齐。
 
-在 CSS3 中，新增了圆角边框样式，这样我们的盒子就可以变圆角了。
-
-border-radius 属性用于设置元素的外边框圆角。
+官方解释： 用于设置一个元素的**垂直对齐方式**，但是它只针对于行内元素或者行内块元素有效。
 
 语法：
 
 ```css
- border-radius:length;    
+vertical-align : baseline | top | middle | bottom 
 ```
 
-- 参数值可以为数值或百分比的形式
-- 如果是正方形，想要设置为一个圆，把数值修改为高度或者宽度的一半即可，或者直接写为 50%
-- 该属性是一个简写属性，可以跟四个值，分别代表左上角、右上角、右下角、左下角
-- 分开写：border-top-left-radius、border-top-right-radius、border-bottom-right-radius 和border-bottom-left-radius
-- 兼容性 ie9+ 浏览器支持, 但是不会影响页面布局,可以放心使用
+| 值       | 描述                                   |
+| -------- | -------------------------------------- |
+| baseline | 默认。元素放置在父元素的基线上         |
+| top      | 把元素的顶端与行中最高元素的顶端对齐   |
+| middle   | 把元素放置在父元素的中部               |
+| bottom   | 把元素的顶端与行中最低的元素的顶端对齐 |
 
-### 2、盒子阴影
+![](/my-blog/images/1571522040645.png)
 
-CSS3 中新增了盒子阴影，我们可以使用 box-shadow 属性为盒子添加阴影。
-语法：
+### 1.1**图片、表单和文字对齐**
+
+图片、表单都属于行内块元素，默认的 vertical-align 是基线对齐。
+
+![](/my-blog/images/1571522093729.png)
+
+此时可以给图片、表单这些行内块元素的 **vertical-align 属性设置为 middle** 就可以让文字和图片垂直居中对齐了。
+
+### 1.2 解决图片底部默认空白缝隙问题
+
+bug：图片底侧会有一个空白缝隙，原因是行内块元素会和文字的基线对齐。
+
+主要解决方法有两种：
+
+1.**给图片**添加 **vertical-align:middle | top| bottom** 等。 （提倡使用的）
+
+2.把图片转换为块级元素  **display: block**; 
+
+## 2.溢出的文字省略号显示
+
+### 2.1 单行文本溢出显示省略号
+
+单行文本溢出显示省略号--必须满足三个条件：
 
 ```css
- box-shadow: h-shadow v-shadow blur spread color inset; 
+  /*1. 先强制一行内显示文本*/
+   white-space: nowrap;  （ 默认 normal 自动换行）
+   
+  /*2. 超出的部分隐藏*/
+   overflow: hidden;
+   
+  /*3. 文字用省略号替代超出的部分*/
+   text-overflow: ellipsis;
 ```
 
-### 3、文字阴影
+### 2.2 多行文本溢出显示省略号（了解）
 
-在 CSS3 中，我们可以使用 text-shadow 属性将阴影应用于文本。
-语法：
+多行文本溢出显示省略号，**有较大兼容性问题**，适合于webKit浏览器或移动端（移动端大部分是webkit内核）
 
 ```css
- text-shadow: h-shadow v-shadow blur color;
+/*1. 超出的部分隐藏 */
+overflow: hidden;
+
+/*2. 文字用省略号替代超出的部分 */
+text-overflow: ellipsis;
+
+/* 3. 弹性伸缩盒子模型显示 */
+display: -webkit-box;
+
+/* 4. 限制在一个块元素显示的文本的行数 */
+-webkit-line-clamp: 2;
+
+/* 5. 设置或检索伸缩盒对象的子元素的排列方式 */
+-webkit-box-orient: vertical;
 ```
 
-## 浮动
+**更推荐让后台人员来做这个效果，因为后台人员可以设置显示多少个字，操作更简单。**
 
-### 1、传统网页布局的三种方式
+## 3.常见布局技巧
 
-​	CSS 提供了三种传统布局方式(简单说,就是盒子如何进行排列顺序)：
+1. margin负值的运用
+2. 文字围绕浮动元素
+3. 行内块的巧妙运用
+4. CSS三角强化
 
-- 普通流（标准流）
+### 3.1. margin负值运用
 
-- 浮动
+![](/my-blog/images/1571522666082.png)
 
-- 定位
+![](/my-blog/images/1571522683897.png)
 
-  这三种布局方式都是用来摆放盒子的，盒子摆放到合适位置，布局自然就完成了。
+1.让每个盒子margin 往左侧移动 -1px 正好压住相邻盒子边框
 
-注意：实际开发中，一个页面基本都包含了这三种布局方式（后面移动端学习新的布局方式） 。
+2.鼠标经过某个盒子的时候，提高当前盒子的层级即可（如果没有有定位，则加相对定位（保留位置），如果有定位，则加z-index）
 
-### 2、标准流（普通流/文档流）
+### 3.2 文字围绕浮动元素
 
-所谓的标准流:  就是标签按照规定好默认方式排列
+**效果**
 
-1. 块级元素会独占一行，从上向下顺序排列。常用元素：div、hr、p、h1~h6、ul、ol、dl、form、table
-2. 行内元素会按照顺序，从左到右顺序排列，碰到父元素边缘则自动换行。常用元素：span、a、i、em 等 
+![](/my-blog/images/1571522777745.png)
 
-以上都是标准流布局，我们前面学习的就是标准流，标准流是最基本的布局方式。
+**布局示意图**
 
-### 3、为什么需要浮动？
+![](/my-blog/images/1571522777745.png)
 
-​		总结： 有很多的布局效果，标准流没有办法完成，此时就可以利用浮动完成布局。 因为浮动可以改变元素标签默认的排列方式.
+**巧妙运用浮动元素不会压住文字的特性**
 
-​		浮动最典型的应用：可以让多个块级元素一行内排列显示。
+### 3.3 行内块巧妙运用
 
-​		网页布局第一准则：**多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动**。
+![](/my-blog/images/1571522898744.png)
 
-### 4、什么是浮动？
+页码在页面中间显示:
 
-​		float 属性用于创建浮动框，将其移动到一边，直到左边缘或右边缘触及包含块或另一个浮动框的边缘。
+1. 把这些链接盒子转换为行内块， 之后给父级指定  text-align:center;
+2. 利用行内块元素中间有缝隙，并且给父级添加 text-align:center; 行内块元素会水平会居中
 
-语法：
+![](/my-blog/images/1571522910580.png)
 
-```
- 选择器 { float: 属性值; }
-```
+### 3.4CSS 三角强化 案例
 
-### 5、浮动特性
+**3.4.1 原理**
 
-加了浮动之后的元素,会具有很多特性,需要我们掌握的.
+![](/my-blog/images/1571550959181.png)
 
-1、浮动元素会脱离标准流(脱标：浮动的盒子不再保留原先的位置)
+![](/my-blog/images/1571551000391.png)
 
-2、浮动的元素会一行内显示并且元素顶部对齐
+![](/my-blog/images/1571548058053.png)
 
-注意： 
+```html
+<style>
+    .box1 {
+        width: 0;
+        height: 0;
+        
+        /* 把上边框宽度调大 */
+        /* border-top: 100px solid transparent;
+        border-right: 50px solid skyblue; */
+        /* 左边和下边的边框宽度设置为0 */
+        /* border-bottom: 0 solid blue;
+        border-left: 0 solid green; */
+        
+        /* 1.只保留右边的边框有颜色 */
+        border-color: transparent red transparent transparent;
+        /* 2. 样式都是solid */
+        border-style: solid;
+        /* 3. 上边框宽度要大， 右边框 宽度稍小， 其余的边框该为 0 */
+        border-width: 100px 50px 0 0 ;
+    }
 
-​		浮动的元素是互相贴靠在一起的（不会有缝隙），如果父级宽度装不下这些浮动的盒子，多出的盒子会另起一行对齐。
-
-3、浮动的元素会具有行内块元素的特性
-
-​		浮动元素的大小根据内容来决定
-
-​		浮动的盒子中间是没有缝隙的
-
-### 6、浮动元素经常和标准流父级搭配使用
-
-为了约束浮动元素位置, 我们网页布局一般采取的策略是:
-
-​		先用标准流父元素排列上下位置, 之后内部子元素采取浮动排列左右位置.  符合网页布局第一准侧
-
-## 常见网页布局
-
-### 浮动布局注意点
-
-1、浮动和标准流的父盒子搭配。
-
-先用标准流的父元素排列上下位置, 之后内部子元素采取浮动排列左右位置
-
-2、一个元素浮动了，理论上其余的兄弟元素也要浮动。
-
-一个盒子里面有多个子盒子，如果其中一个盒子浮动了，其他兄弟也应该浮动，以防止引起问题。
-
-浮动的盒子只会影响浮动盒子后面的标准流,不会影响前面的标准流.
-
-## 四、清除浮动
-
-### 1、为什么需要清除浮动？
-
-​		由于父级盒子很多情况下，不方便给高度，但是子盒子浮动又不占有位置，最后父级盒子高度为 0 时，就会影响下面的标准流盒子。
-
-### 2、清除浮动本质
-
-清除浮动的本质是清除浮动元素造成的影响：浮动的子标签无法撑开父盒子的高度
-
-注意：
-
-- 如果父盒子本身有高度，则不需要清除浮动
-- 清除浮动之后，父级就会根据浮动的子盒子自动检测高度。
-- 父级有了高度，就不会影响下面的标准流了
-
-### 3、清除浮动样式
-
-语法：
-
-```
- 选择器{clear:属性值;} 
+</style>
+</head>
+<body>
+    <div class="box1"></div>
+</body>
 ```
 
-我们实际工作中， 几乎只用 clear: both;
+#### 3.4.2 案例效果
 
-清除浮动的策略是:  闭合浮动. 
+![](/my-blog/images/1571551000391.png)
 
-### 4、清除浮动的多种方式
+#### **3.4.3 代码参考**
 
-#### 4.1、额外标签法
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CSS三角强化的巧妙运用</title>
+        <style>
+            .price {
+                width: 160px;
+                height: 24px;
+                line-height: 24px;
+                border: 1px solid red;
+                margin: 0 auto;
+            }
+            .miaosha {
+                position: relative;
+                float: left;
+                width: 90px;
+                height: 100%;
+                background-color:red;
+                text-align: center;
+                color: #fff;
+                font-weight: 700;
+                margin-right: 8px;
 
-额外标签法也称为隔墙法，是 W3C 推荐的做法。
-
-使用方式：
-
-​		额外标签法会在浮动元素末尾添加一个空的标签。
-
-```css
-例如 <div style="clear:both"></div>，或者其他标签（如<br />等）。
+            }
+            .miaosha i {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 0;
+                height: 0;
+                border-color: transparent #fff transparent transparent;
+                border-style: solid;
+                border-width: 24px 10px 0 0;
+            }
+            .origin {
+                font-size: 12px;
+                color: gray;
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="price">
+            <span class="miaosha">
+                ¥1650
+                <i></i>
+            </span>
+            <span class="origin">¥5650</span>
+        </div>
+    </body>
+</html>
 ```
 
-​		优点： 通俗易懂，书写方便
+## 4.CSS 初始化
 
-​		缺点： 添加许多无意义的标签，结构化较差
+不同浏览器对有些标签的默认值是不同的，为了消除不同浏览器对HTML文本呈现的差异，照顾浏览器的兼容，我们需要对CSS 初始化
 
-​		注意： 要求这个新的空标签必须是块级元素。
+简单理解： CSS初始化是指重设浏览器的样式。 (也称为CSS reset）
 
-总结:
+每个网页都必须首先进行 CSS初始化。
 
-​	1、清除浮动本质是?
+这里我们以 京东CSS初始化代码为例。
 
-​			清除浮动的本质是清除浮动元素脱离标准流造成的影响
+**Unicode编码字体：**
 
-​	2、清除浮动策略是?
+把中文字体的名称用相应的Unicode编码来代替，这样就可以有效的避免浏览器解释CSS代码时候出现乱码的问题。
 
-​			闭合浮动.  只让浮动在父盒子内部影响,不影响父盒子外面的其他盒子.
+比如：
 
-​	3、额外标签法?
-
-​			隔墙法, 就是在最后一个浮动的子元素后面添
-
-​	4、加一个额外标签, 添加 清除浮动样式.
-
-​			实际工作可能会遇到,但是不常用
-
-#### 4.2、父级添加 overflow 属性
-
-可以给父级添加 overflow 属性，将其属性值设置为 hidden、 auto 或 scroll 。
-
-例如：
-
-```css
-overflow:hidden | auto | scroll;
-```
-
-优点：代码简洁
-
-缺点：无法显示溢出的部分
-
-注意：是给父元素添加代码
-
-#### 4.3、父级添加after伪元素
-
-:after 方式是额外标签法的升级版。给父元素添加：
-
-```css
-.clearfix:after {  
-   content: ""; 
-   display: block; 
-   height: 0; 
-   clear: both; 
-   visibility: hidden;  
- } 
- .clearfix {  /* IE6、7 专有 */ 
-   *zoom: 1;
- }   
-```
-
-优点：没有增加标签，结构更简单
-
-缺点：照顾低版本浏览器
-
-代表网站： 百度、淘宝网、网易等
-
-#### 4.4、父级添加双伪元素
-
-给父元素添加
-
-```css
-.clearfix:before,.clearfix:after {
-   content:"";
-   display:table; 
- }
- .clearfix:after {
-   clear:both;
- }
- .clearfix {
-    *zoom:1;
- }   
-```
-
-优点：代码更简洁
-
-缺点：照顾低版本浏览器
-
-代表网站：小米、腾讯等
-
-### 总结
-
-为什么需要清除浮动？
-
-1. 父级没高度。
-2. 子盒子浮动了。
-3. 影响下面布局了，我们就应该清除浮动了。
-
-| 清除浮动的方式       | 优点           | 缺点                               |
-| -------------------- | -------------- | ---------------------------------- |
-| 额外标签法（隔墙法） | 通俗易懂       | 添加许多无意义的标签，结构化比较差 |
-| 父级overflow:hidden  | 书写简单       | 溢出隐藏                           |
-| 父级after伪元素      | 结构语义化正确 | 由于IE6-7不支持:after,兼容性问题   |
-| 父级双伪元素         | 结构语义化正确 | 由于IE6-7不支持:after,兼容性问题   |
-
+黑体 \9ED1\4F53
+宋体 \5B8B\4F53
+微软雅黑 \5FAE\8F6F\96C5\9ED1
