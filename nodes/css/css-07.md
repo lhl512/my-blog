@@ -112,7 +112,7 @@ display: -webkit-box;
 
 **布局示意图**
 
-![](/my-blog/images/1571522777745.png)
+![](/my-blog/images/1571522761996.png)
 
 **巧妙运用浮动元素不会压住文字的特性**
 
