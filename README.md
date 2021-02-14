@@ -1,7 +1,7 @@
 ---
 home: true
 # heroText: vuepress-theme-reco
-tagline: 乾坤未定，你我皆黑马
+tagline: 星光不问赶路人,时光不负有心人
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',
@@ -11,7 +11,7 @@ tagline: 乾坤未定，你我皆黑马
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
-bgImage: '/bgg.jpg'
+bgImage: '/bg.jpg'
 bgImageStyle: {
   height: '1000px'
 }
