@@ -11,7 +11,7 @@ tagline: 乾坤未定，你我皆黑马
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
-bgImage: '/bg.jpg'
+bgImage: '/bgg.jpg'
 bgImageStyle: {
   height: '1000px'
 }
