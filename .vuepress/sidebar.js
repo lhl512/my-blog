@@ -66,5 +66,16 @@ module.exports = {
 
             ]
         },
+        {
+            "title": "js",
+            "collapsable": true,
+            "children": [{
+                "title": "jQuery",
+                "collapsable": true,
+                "children": [
+                    "/nodes/js/jquery/jQuery-01.md"
+                ]
+            }]
+        }
     ]
 }

@@ -4,7 +4,7 @@ const friendLink = require("./friendLink.js")
 const sidebar = require("./sidebar")
 module.exports = {
   "title": "爱敲代码のfox",
-  "description": "乾坤未定,你我皆黑马",
+  "description": "星光不问赶路人,时光不负有心人",
   "dest": "public",
   "base": "/my-blog/",
   "head": [
