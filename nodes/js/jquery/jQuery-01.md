@@ -43,9 +43,9 @@ jquery是一个快速、简洁的js库，其设计的宗旨是“write less。do
 
 ## jquery入口函数
 
-```
+```js
 $(function(){
-    //此处是页面DOM加载完成的入口
+	//此处是页面DOM加载完成的入口
 })
 ```
 
@@ -63,13 +63,13 @@ $是jquery的别称，同时也是jquery的顶级对象，相当于js中的windo
 
  DOM对象 
 
-```
+```js
 let div = document.querySelector('div');
 ```
 
 jq对象
 
-```
+```js
 $('div');
 ```
 
@@ -137,7 +137,7 @@ $('div').css("background","pink");
 
 ### jquery的排他思想
 
-```
+```html
 <body>
     <button>
         快速
@@ -149,14 +149,14 @@ $('div').css("background","pink");
         快速
     </button>
     <scrpit>
-        $(dunction(){
-            //1.隐式迭代，对所有的按钮都绑定了点击事件
-            $("button").click(function(){
-                //2.当前元素变化背景颜色
-                $(this).css("background","pink");
-                //3.其他兄弟去掉背景颜色
-                $(this).siblings("button").css("background","")
-            });
+    	$(dunction(){
+        	//1.隐式迭代，对所有的按钮都绑定了点击事件
+        	$("button").click(function(){
+        		//2.当前元素变化背景颜色
+        		$(this).css("background","pink");
+        		//3.其他兄弟去掉背景颜色
+        		$(this).siblings("button").css("background","")
+        	});
         })
     </scrpit>
 </body>
@@ -190,8 +190,8 @@ $(this).css("color","pink") //属性名要加引号
 
 ```
 $(this).css({
-    width:400,
-    height:400
+	width:400,
+	height:400
 })
 ```
 
@@ -225,8 +225,615 @@ jquery里面类操作只是对指定类进行操作，不影响原先的类名
 $(this).addClass("current");//相当于追加类名，不影响原先的类名
 ```
 
+## jQuery效果
 
+1、显示语法规范
 
+```
+show([speed,[easing],[fn]])
+```
 
+2、显示参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+1、隐藏语法规范
+
+```
+hide([speed,[easing],[fn]])
+```
+
+2、隐藏参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+### 事件切换
+
+```
+hover([over],out)
+```
+
+1)over：鼠标移动到元素上要触发的函数(相当于mouseenter)
+
+2)out：鼠标移除元素要触发的函数
+
+语法：
+
+```
+$("div").hover(function(){},function(){})
+```
+
+注意：如果只写一个函数，那么鼠标经过和离开都会触发这个函数
+
+```js
+$("div").hover(function(){
+	$(this).slideToggle();
+})
+```
+
+### 动画队列及其停止排队方法
+
+**1、动画或效果队列**
+
+动画或者效果一旦触发就会执行，如果多次触发。就造成多个动画或者效果排队执行
+
+**2.停止排队**
+
+```js
+stop()
+```
+
+1)stop()方法用于停止动画或效果
+
+2)注意：stop()写动画或者效果的前面，相当于停止结束上一次的动画
+
+```js
+$("div").hover(function(){
+	$(this).stop().slideToggle();
+})
+```
+
+### 淡入淡出
+
+```
+$("button").eq(0).click(function(){
+	//淡入 fadeIn()
+	$("div").fadeIn(1000)
+})
+$("button").eq(1).click(function(){
+	//淡出 fadeOut()
+	$("div").fadeOut(1000)
+})
+$("button").eq(2).click(function(){
+	// 淡入淡出切换 fadeToggle()
+	$("div").fadeToggle(1000)
+})
+$("button").eq(3).click(function(){
+	// 修改透明度 fadeTo() 速度和透明度必须写
+	$("div").fadeTo(1000,0.5)
+})
+```
+
+#### 1.渐进方式调整到指定的透明度
+
+```
+fadeTo([speed],opacity,[easing],[fn])
+```
+
+#### 2.效果参数
+
+1)opacity透明度必须写,取值0~1之间
+
+2)speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）必须写
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+### 自定义动画
+
+#### 1.语法：
+
+```
+animate(params,[speed],[easing],[fn])
+```
+
+#### 2.参数
+
+1)paeams:想要改变的样式属性，以对象形式传递，必须写。
+
+2)speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）必须写
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+```
+$("button").click(function(){
+	$("div").animate({
+		left:500
+	})
+})
+```
+
+## jQuery属性操作
+
+### 1.设置或获取元素固有属性值prop()
+
+```
+$("a").prop("href")
+```
+
+1.获取
+
+```
+$("a").prop("属性名")
+```
+
+2.设置
+
+```
+$("a").prop("属性名","属性值")
+```
+
+### 2.设置或获取元素自定义属性值attr()
+
+```
+$("div").attr("index")
+```
+
+### 3.数据缓存data()
+
+data()方法可以在指定的元素上存取数据，并不会修改DOM元素结构，一旦页面刷新，之前存放的数据都将被移除
+
+## jQuery内容文本值
+
+主要针对元素的内容还有表单的值操作
+
+### 1.普通元素内容html()  (相当于原生innerHTML)
+
+```
+html()  //获取元素内容
+html("内容")   //设置元素的内容
+```
+
+### 2.普通文本内容text() (相当于原生innerText)
+
+```
+text()	//获取元素文本内容
+text("内容")	//设置元素文本内容
+```
+
+### 3.表单值
+
+```
+val()
+val("内容")
+```
+
+## jQuery元素操作
+
+主要是**遍历**、创建、添加、删除元素操作
+
+### 1.遍历元素
+
+jQuery隐式迭代是对同一类元素做了同样的操作，如果想要给同一类元素做不同操作，就需要用到遍历。
+
+**语法1：**
+
+```
+$("div").each(function (index,domElm){})
+```
+
+1.each()方法遍历匹配的每一个元素，主要用DOM处理。each每一个
+
+2.里面的回调函数有两个参数：index是每个元素的索引号：demEle是每个DOM元素对象，不是jQuery对象
+
+3.所以要想使用jquer方法，需要给每个都没元素转化为jQuery对象$(domEle)
+
+```html
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<script>
+	$("div").each(function(index,domEle){
+        $(domEle).css("color","red")
+    })
+</script>
+```
+
+**语法2：**
+
+```
+$.each(object,function(index,element){})
+```
+
+1.$.each()方法可用于遍历任何对象，主要用于数据处理，比如数组，对象
+
+2.里面的函数有2个参数：index是每个元素的索引号；element遍历内容
+
+```html
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<script>
+    let arr = [1,2,3]
+    // $.each()方法遍历元素 主要用于遍历数据，处理数据
+	$.each($("div"),function(i,ele){})
+	$.each(arr,function(i,ele){})
+</script>
+```
+
+### 2.创建元素
+
+```js
+$(function(){
+	//创建li
+	let li = $("<li>我是后来的li</li>")
+	//内部添加li
+	$("ul").append(li)
+	//外部添加
+	$(li).before("<li>我是前面的li</li>")
+	$(li).after("<li>我是后面的li</li>")
+	//删除
+	//$("ul").remove();自杀
+	//$("ul").empty();孩子
+	$("ul").html();孩子
+})
+```
+
+**语法：**
+
+```js
+$("<li></li>")
+```
+
+动态创建一个`<li>`
+
+### 3.添加元素
+
+**1.内部添加：**
+
+```js
+element.append("内容")
+```
+
+把内容放入匹配元素内部最后面，类似原生appendChild
+
+**2.外部添加**
+
+```js
+element.after("内容")  //把内容放到目标元素后面
+element.before("内容") //把内容放到目标元素前面
+```
+
+**1、内部添加元素，生成之后，它们是父子关系**
+
+**2、外部添加元素，生成之后，它们是兄弟关系**
+
+### 4.删除元素
+
+```js
+element.remove() //删除匹配元素(本身)
+element.empty()	//删除匹配元素集合中的所有子节点
+element.html("") //清空匹配元素内容
+```
+
+## jQuery尺寸、位置操作
+
+### 1.jQuery尺寸
+
+| 尺寸                                 | 用法                                               |
+| ------------------------------------ | -------------------------------------------------- |
+| width() / height()                   | 取得匹配元素宽度和高度 只算width / height          |
+| innerWidth() / innerHeight           | 取得匹配元素宽度和高度 包含 padding                |
+| outerWidth() / outerHeight()         | 取得匹配元素宽度和高度 包含padding、border         |
+| outerWidth(true) / outerHeight(true) | 取得匹配元素宽度和高度 包含padding、border、margin |
+
+- 以上参数为空时，则是获取相应值，返回的是数字型
+- 如果参数时数字，则是修改相应值
+- 参数可以不写单位
+
+### jQuery位置
+
+位置主要有三个：**offset()**、position()、scrollTop()/scrollLefr()
+
+#### 1.offset()设置或获取元素偏移
+
+1 offset()方法设置或返回被选元素相对于文档的偏移坐标，跟父级没有关系
+
+```js
+$("son").offset() //返回对象
+$("son").offset().top
+
+//设置
+$("son").offset({
+	top:200,
+	left:200
+});
+```
+
+2 该方法有两个属性left，top。offset().top用于获取距离文档顶部的距离,offset().left用于获取距离文档左侧的距离
+
+#### 2.position()获取元素偏移（只能获取不能设置）
+
+1 position()方法用于返回被选中元素相对于**带有定位父级**偏移坐标，如果父级都没有定位，则以文档为准
+
+```js
+$("son").position() //返回对象
+```
+
+#### 3.scrollTop() / scrollLeft()设置或获取元素被卷去的头部和左侧
+
+1 scrollTop()方法设置或返回被选中元素被卷去的头部
+
+```js
+$(windwo).scroll(function(){
+	$(cocument).scrollTop();
+})
+```
+
+## jQuery事件注册
+
+**单个事件注册**
+
+语法：
+
+```js
+element.事件(function(){})
+```
+
+```js
+$("div").click(function(){事件处理程序})
+```
+
+## jQuery事件处理
+
+### 1.事件处理 on()绑定事件
+
+ on()方法在匹配元素上绑定一个或多个事件的事件处理函数
+
+**语法：**
+
+```js
+element.on(events,[selector],fn)
+```
+
+1.events:一个或多个用哪个空格分隔的事件类型，如"click"或"keydown"
+
+2.selector:元素的子元素选择器
+
+3.fn：回调函数
+
+```js
+$("div").on({
+	mouseenter:function(){
+		$(this).css("background","pink")
+	},
+	click:function(){
+		$(this).css("background","blue")
+	}
+})
+```
+
+**on()方法优势1：**
+
+可以绑定多个事件，多个处理事件处理程序
+
+```js
+$("div").on({
+	mouseenter:function(){
+		
+	},
+	click:function(){
+	
+	}
+});
+```
+
+如果事件处理程序相同
+
+```js
+$("div").on("mouseover mouseout", function(){
+	$(this).toggleClass("current")
+})
+```
+
+**on()方法优势2：**
+
+可以事件委派操作。事件委派的定义是，把原来加个子元素身上的事件绑定在父元素身上，就是把事件委派给父元素。
+
+```js
+ $("ul").on("click","li",function(){
+ 		
+ });
+```
+
+**on()方法优势3：**
+
+动态创建的元素，click()没有办法绑定事件, on()可以给动态生成的元素绑定事件
+
+```js
+ $("ul").on("click","li",function(){
+ });
+ let li =$("<li>我是后来的li</li>");
+ $("ul").append(li);
+```
+
+### 事件处理 0ff()解绑事件
+
+off()方法可以移除通过on()方法添加的事件处理程序。
+
+```js
+$("div").on({
+	mouseenter:function(){
+		
+	},
+	click:function(){
+	
+	}
+});
+$("div").off(); //解除div身上所有事件
+$("div").off("click"); //解除了div身上的点击事件
+
+//解除事件委托
+$("ul").on("click","li",function(){
+ });
+ $("ul").off("click","li");
+```
+
+如果事件只想触发一次，可以使用one()来绑定事件
+
+```js
+$("p").one("click",function(){
+	
+})
+```
+
+### 自动触发事件 trigger()
+
+```
+$("div").on("click",function(){
+	
+});
+$("div").click();
+$("div").trigger("click"); 
+$("div").triggerHandler("click");就是不会触发元素的默认行为
+```
+
+有些事件希望自动触发，比如轮播图自动播放跟点击左右侧按钮一致。可以利用定时器自动触发按钮点击事件，不必鼠标点击触发。
+
+```
+element.click()   //第一种简写形式
+```
+
+```
+element.trigger("事件")
+```
+
+```
+element.triggerHandler("事件")
+```
+
+## jQuery事件对象
+
+事件被触发，就会有事件对象的产生
+
+```
+element.on(events,[selector],function(event))
+```
+
+```
+$("div").on("click",function(event){
+	
+});
+```
+
+阻止默认行为：event.prevenDefauit()或者return false
+
+阻止事件冒泡:event.stopPropagation()
+
+## jQuery对象拷贝
+
+如果想要把某个对象拷贝(合并)个另一个对象使用，此时可以使用$.extend()方法
+
+**语法：**
+
+```
+$.extend([deep],target,object1,[objectN])
+```
+
+1.deep:如果设为true为深拷贝，默认为false，浅拷贝
+
+2.target：要拷贝的目标对象
+
+3.object1：待拷贝到第一个对象的对象。
+
+4.objectN： 待拷贝到第N个对象的对象
+
+5.浅拷贝是把被拷贝的对象**复杂数据类型中的地址**拷贝给目标对象，修改目标对象**会影响**被拷贝对象
+
+6.深拷贝，前面加true，完全克隆( 拷贝的对象，而不是地址)，修改目标对象**不会影响**被拷贝对象。
+
+```
+let  targetObj = {}
+let obj ={
+	id:1,
+	name:"andy"
+};
+$.extend(targetObj,obj)
+```
+
+```
+let  targetObj = {id:1}
+let obj ={
+	id:1,
+	name:"andy"
+};
+// 浅拷贝
+$.extend(targetObj,obj) //会覆盖以前的数据
+// 深拷贝
+$.extend(true,targetObj,obj)
+```
+
+## jQuery多库共存
+
+**问题概述：**
+
+jQuery使用$作为标识符，随着jQuery的流行，其他js库也会用这$作为标识符，这样一起使用会引发冲突
+
+**客观需求：**
+
+需要一个解决方案，让jQuery和其他的js库不存在冲突，可以同时存在，这就叫做多库共存。
+
+**jQuery解决方案：**
+
+**1.把里面的$符号统一改成jQuery。比如jQuery("div")**
+
+**2.jQuery变量规定新的名称：$.noConflict()     let xx = $.noConflict()**
+
+## jQuery插件
+
+jQuery功能比较有限，想要更复杂的特效效果，可以借助于jQuery插件完成。
+
+注意：这些插件也是依赖jQuery来完成的，所以必须要引入jQuery文件，因此也称为jQuery插件
+
+**jQuery插件常用网站：**
+
+1.jQuery插件库  http://www.jq22.com
+
+2.jQuery之家 http://www.htmleaf.com
+
+**jQuery插件使用步骤：**
+
+1.引入相关文件。(jQuery文件和插件文件)
+
+2.复制相关html、css、js(调用插件)。
+
+#### 图片懒加载(图片使用延迟加载在可提高网页下载速度。它也能帮助减轻服务器负载)
+
+当我们页面滑动到可视区域，再显示图片
+
+### 全屏滚动(fullpage.js)
+
+gitHub:https://github.com/alvarotroigo/fullPage.js
+
+中文翻译网站：http://www.dowebok.com/demo/2014/77/
+
+#### bootstrap插件：
+
+bootstrap框架也是依赖jQuery开发的，因此里面的js插件使用，也必须引入jQuery文件
 
  
