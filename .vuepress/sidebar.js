@@ -70,12 +70,27 @@ module.exports = {
             "title": "js",
             "collapsable": true,
             "children": [{
-                "title": "jQuery",
-                "collapsable": true,
-                "children": [
-                    "/nodes/js/jquery/jQuery-01.md"
-                ]
-            }]
+                    "title": "jQuery",
+                    "collapsable": true,
+                    "children": [
+                        "/nodes/js/jquery/jQuery-01.md"
+                    ]
+                },
+                {
+                    "title": "js基础",
+                    "collapsable": true,
+                    "children": [
+                        "/nodes/js/js基础/js基础-01.md"
+                    ]
+                }, {
+                    "title": "js进阶",
+                    "collapsable": true,
+                    "children": [
+                        "/nodes/js/js进阶/js进阶-01.md",
+                        "/nodes/js/js进阶/js进阶-02.md"
+                    ]
+                }
+            ]
         }
     ]
 }
