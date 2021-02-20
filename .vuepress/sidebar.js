@@ -87,7 +87,9 @@ module.exports = {
                     "collapsable": true,
                     "children": [
                         "/nodes/js/js进阶/js进阶-01.md",
-                        "/nodes/js/js进阶/js进阶-02.md"
+                        "/nodes/js/js进阶/js进阶-02.md",
+                        "/nodes/js/js进阶/js进阶-03.md",
+                        "/nodes/js/js进阶/js进阶-04.md",
                     ]
                 }
             ]
