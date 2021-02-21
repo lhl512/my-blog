@@ -40,11 +40,11 @@ module.exports = [
         }
     ],
     ["vuepress-reco/vuepress-plugin-loading-page"],
-    ['@vuepress/last-updated', {
+    // ['@vuepress/last-updated', {
 
-        dateOptions: {
-            hour12: true
+    //     dateOptions: {
+    //         hour12: true
 
-        }
-    }]
+    //     }
+    // }]
 ]
