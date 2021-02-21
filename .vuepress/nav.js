@@ -1,22 +1,22 @@
 const tools = require("./tools")
 const Contact = require("./Contact")
 module.exports = [{
-        "text": "Home",
+        "text": "首页",
         "link": "/",
         "icon": "reco-home"
     },
     {
-        "text": "nodes",
+        "text": "学习",
         "icon": "reco-document",
         "link": "/nodes/"
     },
     {
-        "text": "tools",
+        "text": "工具",
         "icon": "reco-other",
         "items": tools
     },
     {
-        "text": "TimeLine",
+        "text": "时间轴",
         "link": "/timeline/",
         "icon": "reco-date"
     },

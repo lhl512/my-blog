@@ -1,3 +1,4 @@
+const moment = require('moment');
 module.exports = [
     // 看板娘
     [
@@ -40,11 +41,12 @@ module.exports = [
         }
     ],
     ["vuepress-reco/vuepress-plugin-loading-page"],
-    // ['@vuepress/last-updated', {
-
-    //     dateOptions: {
-    //         hour12: true
-
-    //     }
-    // }]
+    ['@vuepress/last-updated', {
+        transformer: (timestamp, lang) => {
+            // 不要忘了安装 moment
+            const moment = require('moment')
+            moment.locale(lang)
+            return moment(timestamp).fromNow()
+        }
+    }]
 ]

@@ -36,12 +36,12 @@ module.exports = {
       // 分类
       "category": {
         "location": 2,
-        "text": "Category"
+        "text": "分类"
       },
       // 标签
       "tag": {
         "location": 3,
-        "text": "Tag"
+        "text": "标签"
       },
     },
     // 友情链接
@@ -60,7 +60,7 @@ module.exports = {
     "search": true,
     "searchMaxSuggestions": 10,
     // 最后更新时间
-    "lastUpdated": "Last Updated",
+    "lastUpdated": "最后更新时间",
     // 作者
     "author": "爱敲代码のfox",
     // 右侧头像
