@@ -91,8 +91,15 @@ module.exports = {
                         "/nodes/js/js进阶/js进阶-03.md",
                         "/nodes/js/js进阶/js进阶-04.md",
                         "/nodes/js/js进阶/js进阶-05.md",
+                        "/nodes/js/js进阶/js进阶-06.md",
                     ]
-                }
+                }, {
+                    "title": "WedApi",
+                    "collapsable": true,
+                    "children": [
+                        "/nodes/js/WedApi/WedApi-01.md"
+                    ]
+                },
             ]
         }
     ]
