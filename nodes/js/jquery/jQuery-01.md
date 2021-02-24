@@ -1,5 +1,5 @@
 ---
-title:  jQuery-01
+title:  jQuery
 date: 2021-01-15
 sidebar: auto
 tags:
@@ -10,7 +10,13 @@ categories:
 
 ## jQuery简介
 
-js库：即library，是一个封装好特定的集合（方法和函数）
+###  JavaScript 库
+
+​		JavaScript库：即 library，是一个封装好的特定的集合（方法和函数）。从封装一大堆函数的角度理解库，就是在这个库中，封装了很多预先定义好的函数在里面，比如动画animate、hide、show，比如获取元素等。
+
+> 简单理解： 就是一个JS 文件，里面对我们原生js代码进行了封装，存放到里面。这样我们可以快速高效的使用这些封装好的功能了。
+>
+> 比如 jQuery，就是为了快速方便的操作DOM，里面基本都是函数（方法）。
 
 常见的js库
 
@@ -21,77 +27,126 @@ js库：即library，是一个封装好特定的集合（方法和函数）
 - ext js
 - 移动端的zepto
 
-## jquery的概念
+### jQuery的概念
 
-jquery是一个快速、简洁的js库，其设计的宗旨是“write less。do more”，即提倡写更少的代码，做更多的事情。
+- jQuery是一个快速、简洁的js库，其设计的宗旨是“write less。do more”，即提倡写更少的代码，做更多的事情。
+- jQuery 封装了 JavaScript 常用的功能代码，优化了 DOM 操作、事件处理、动画设计和 Ajax 交互。
+- 学习jQuery本质： 就是学习调用这些函数（方法）。
+- jQuery 出现的目的是加快前端人员的开发速度，我们可以非常方便的调用和使用它，从而提高开发效率。
 
-## jquery的优点
+### jquery的优点
 
 优点：
 
-轻量级。核心代码猜几十kb，不会影响页面加载速度
+1. 轻量级。核心代码猜几十kb，不会影响页面加载速度
 
-跨浏览器兼容。基本兼容了现在主流的浏览器
+2. 跨浏览器兼容。基本兼容了现在主流的浏览器
 
-**链式编程**、**隐式迭代**
+3. **链式编程**、**隐式迭代**
+4. 对事件、样式、动画支持、大大简化了dom操作
 
-对事件、样式、动画支持、大大简化了dom操作
+5. 支持插件扩展开发、有着丰富的第三方插件
 
-支持插件扩展开发、有着丰富的第三方插件
+6. 免费，开源 
 
-免费，开源
+##  jQuery 的基本使用
 
-## jquery入口函数
+### jQuery 的下载
+
+​	jQuery的官网地址： https://jquery.com/，官网即可下载最新版本。
+
+​    中文网：http://jquery.cuishifeng.cn/
+
+>  各个版本的下载：https://code.jquery.com/
+
+​	版本介绍：
+
+> 1x ：兼容 IE 678 等低版本浏览器， 官网不再更新
+>
+> 2x ：不兼容 IE 678 等低版本浏览器， 官网不再更新
+>
+> 3x ：不兼容 IE 678 等低版本浏览器， 是官方主要更新维护的版本
+
+### jquery入口函数
+
+jQuery中常见的两种入口函数：
 
 ```js
-$(function(){
-	//此处是页面DOM加载完成的入口
-})
+// 第一种: 简单易用。
+$(function () {   
+    ...  // 此处是页面 DOM 加载完成的入口
+}) ; 
+
+// 第二种: 繁琐，但是也可以实现
+$(document).ready(function(){
+   ...  //  此处是页面DOM加载完成的入口
+});
 ```
 
-## jquery的顶级对象
+​	总结：
 
-$是jquery的别称，同时也是jquery的顶级对象，相当于js中的window
+1. 等着 DOM 结构渲染完毕即可执行内部代码，不必等到所有外部资源加载完成，jQuery 帮我们完成了封装。
+2. 相当于原生 js 中的 DOMContentLoaded。
+3. 不同于原生 js 中的 load 事件是等页面文档、外部的 js 文件、css文件、图片加载完毕才执行内部代码。
+4. 更推荐使用第一种方式。
 
-## jquery对象和DOM对象
+### jquery的顶级对象$
 
-1、用原生js获取过来的对象就是DOM对象
+1.  \$是 jQuery 的别称，在代码中可以使用 jQuery 代替，但一般为了方便，通常都直接使用 $ 。
+2.  \$是jQuery的顶级对象，相当于原生JavaScript中的 window。把元素利用$包装成jQuery对象，就可以调用jQuery 的方法。
 
-2、用jq获取过来的对象就是矫情对象
+### jquery对象和DOM对象
 
-3、jq对象的本质是：利用$对象DOM对象包装后产生的对象（伪数组形式存储）
+使用 jQuery 方法和原生JS获取的元素是不一样的，总结如下 : 
 
- DOM对象 
+1. 用原生js获取过来的对象就是DOM对象
+
+2. 用jq获取过来的对象就是矫情对象
+3. jq对象的本质是：利用$对象DOM对象包装后产生的对象（伪数组形式存储）
+
+DOM对象 
 
 ```js
 let div = document.querySelector('div');
 ```
 
-jq对象
+jQuery对象
 
 ```js
 $('div');
 ```
 
-注意：jq对象只能使用jq方法，DOM对象则使用原生的js属性和方法
+> 注意：
+>
+> 只有 jQuery 对象才能使用 jQuery 方法，DOM 对象则使用原生的 JavaScirpt 方法。 
 
 DOM对象与jq对象之间是可以相互转换的
 
-1、DOM转jq
+1、DOM对象转jQuery对象
 
-```
+```js
 let div = document.querySelector('div');
 $(div);
 ```
 
-2、jq转dom（2种）
+2、jQuery对象转DOM对象（2种）
 
-```
-$('div')[index]   index是索引号
-$('div').get(index)   index是索引号
+```js
+$('div')[index]   index是索引值
+$('div').get(index)   index是索引知
 ```
 
-### jq选择器
+总结：实际开发比较常用的是把DOM对象转换为jQuery对象，这样能够调用功能更加强大的jQuery中的方法。
+
+## jQuery选择器
+
+​		原生 JS 获取元素方式很多，很杂，而且兼容性情况不一致，因此 jQuery 给我们做了封装，使获取元素统一标准。
+
+### 基础选择器
+
+```js
+$("选择器")   //  里面选择器直接写 CSS 选择器即可，但是要加引号 
+```
 
 | 名称       | 用法            | 描述                   |
 | ---------- | --------------- | ---------------------- |
@@ -102,17 +157,20 @@ $('div').get(index)   index是索引号
 | 并集选择器 | $('div,p,li')   | 获取多个元素           |
 | 交集选择器 | $('li.current') | 交集元素               |
 
-### jq样式修改
+### 层级选择器
 
-```
-$('div').css("background","pink");
-```
+​		层级选择器最常用的两个分别为：后代选择器和子代选择器。
+
+| 名称       | 用法       | 描述                                                         |
+| ---------- | ---------- | ------------------------------------------------------------ |
+| 子代选择器 | $("ul>li") | 使用>符号，获取亲儿子层级的元素；注意：并不会获取子层级的元素 |
+| 后代选择器 | $("ul li") | 使用空格，代表后代选择器，获取ul下所有的元素，包括子孙等     |
 
 ### 隐式迭代（重要）
 
  遍历内部dom元素（伪数组形式存储）的过程就叫做**隐式迭代** 
 
-### jquery筛选选择器
+### jQuery筛选选择器
 
 | 语法       | 用法          | 描述                                     |
 | ---------- | ------------- | ---------------------------------------- |
@@ -122,7 +180,7 @@ $('div').css("background","pink");
 | :odd       | $("li:odd")   | 获取到的li元素中，选择索引号为奇数的元素 |
 | :even      | $("li:even")  | 获取到的li元素中，选择索引号为偶数的元素 |
 
-### jquery筛选方法（重点）
+### jQuery筛选方法（重点）
 
 | 语法               | 用法                           | 说明                                               |
 | ------------------ | ------------------------------ | -------------------------------------------------- |
@@ -135,9 +193,9 @@ $('div').css("background","pink");
 | hasClass(class)    | $("div").hasClass("protected") | 检查当前元素是否含有某个特定的类，如果有则返回true |
 | eq(index)          | $("li").eq(2)                  | 相当于$("li:eq(2)")                                |
 
-### jquery的排他思想
+### jQuery的排他思想
 
-```html
+```js
 <body>
     <button>
         快速
@@ -166,29 +224,31 @@ $('div').css("background","pink");
 
 链式编程是为了节省代码量，看起来更优雅
 
-```
+```js
 $(this).css("background","pink").siblings().css("background","")
 ```
 
 ## jQuery样式操作
 
+​		jQuery中常用的样式操作有两种：css() 和 设置类样式方法
+
 ### 操作css方法
 
 1.参数只写属性名，则返回属性值
 
-```
+```js
 $(this).css("color")
 ```
 
 2.修改属性
 
-```
+```js
 $(this).css("color","pink") //属性名要加引号
 ```
 
 3.修改多个属性
 
-```
+```js
 $(this).css({
 	width:400,
 	height:400
@@ -197,43 +257,72 @@ $(this).css({
 
 ### 设置类方法
 
+​		作用等同于以前的 classList，可以操作类样式， 注意操作类里面的参数不要加点。
+
+​		常用的三种设置类样式方法：
+
 1.添加类
 
-```
+```JS
 $(this).addClass("current");
 ```
 
 2.移除类
 
-```
+```JS
 $(this).removeClass("current");
 ```
 
 3.切换类
 
-```
+```JS
 $("div").toggleClass("current"); //没有添加，有移除
 ```
 
+注意：
+
+1. 设置类样式方法比较适合样式多时操作，可以弥补css()的不足。
+2. 原生 JS 中 className 会覆盖元素原先里面的类名，jQuery 里面类操作只是对指定类进行操作，不影响原先的类名。
+
 ### 类操作与className区别
 
-原生js中className对覆盖元素原先里面的类名
+​		原生js中className对覆盖元素原先里面的类名
 
 jquery里面类操作只是对指定类进行操作，不影响原先的类名
 
-```
+```JS
 $(this).addClass("current");//相当于追加类名，不影响原先的类名
 ```
 
-## jQuery效果
+## jQuery 动画效果
 
-1、显示语法规范
+​		jQuery 给我们封装了很多动画效果，最为常见的如下：
 
-```
+- 显示隐藏：show() / hide() / toggle() ;
+
+- 划入画出：slideDown() / slideUp() / slideToggle() ; 
+
+- 淡入淡出：fadeIn() / fadeOut() / fadeToggle() / fadeTo() ; 
+
+- 自定义动画：animate() ;
+
+  注意：
+
+  动画或者效果一旦触发就会执行，如果多次触发，就造成多个动画或者效果排队执行。
+
+  jQuery为我们提供另一个方法，可以停止动画排队：stop() ;
+
+### 显示隐藏
+
+#### 显示
+
+1.显示语法规范
+
+```JS
 show([speed,[easing],[fn]])
 ```
 
-2、显示参数
+2.显示参数
 
 1）参数都可以省略
 
@@ -243,9 +332,11 @@ show([speed,[easing],[fn]])
 
 4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
 
+#### 隐藏
+
 1、隐藏语法规范
 
-```
+```JS
 hide([speed,[easing],[fn]])
 ```
 
@@ -259,9 +350,245 @@ hide([speed,[easing],[fn]])
 
 4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
 
+#### 切换
+
+1、切换语法规范
+
+```js
+toggle([speed,[easing],[fn]])
+```
+
+2、切换参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 代码演示
+
+```js
+<body>
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>切换</button>
+    <div></div>
+    <script>
+        $(function() {
+            $("button").eq(0).click(function() {
+                $("div").show(1000, function() {
+                    alert(1);
+                });
+            })
+            $("button").eq(1).click(function() {
+                $("div").hide(1000, function() {
+                    alert(1);
+                });
+            })
+            $("button").eq(2).click(function() {
+              $("div").toggle(1000);
+            })
+            // 一般情况下，我们都不加参数直接显示隐藏就可以了
+        });
+    </script>
+</body>
+```
+
+### 滑入滑出
+
+#### 滑入
+
+1.滑入语法规范
+
+```JS
+sideDown([speed,[easing],[fn]])
+```
+
+2.滑入参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 滑出
+
+1.滑出语法规范
+
+```JS
+sideUp([speed,[easing],[fn]])
+```
+
+2.滑入参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 切换
+
+1.切换语法规范
+
+```JS
+sideToggle([speed,[easing],[fn]])
+```
+
+2.切换参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 代码演示
+
+```js
+<body>
+    <button>下拉滑动</button>
+    <button>上拉滑动</button>
+    <button>切换滑动</button>
+    <div></div>
+    <script>
+        $(function() {
+            $("button").eq(0).click(function() {
+                // 下滑动 slideDown()
+                $("div").slideDown();
+            })
+            $("button").eq(1).click(function() {
+                // 上滑动 slideUp()
+                $("div").slideUp(500);
+            })
+            $("button").eq(2).click(function() {
+                // 滑动切换 slideToggle()
+                $("div").slideToggle(500);
+            });
+        });
+    </script>
+</body>
+```
+
+### 淡入淡出
+
+#### 淡入
+
+1.淡入语法规范
+
+```JS
+fadeIn([speed,[easing],[fn]])
+```
+
+2.淡入参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 淡出
+
+1.淡出语法规范
+
+```JS
+fadeOut([speed,[easing],[fn]])
+```
+
+2.淡出参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 切换
+
+1.淡出语法规范
+
+```JS
+fadeToggle([speed,[easing],[fn]])
+```
+
+2.淡出参数
+
+1）参数都可以省略
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 渐进方式调整到指定不透明度
+
+1.调整语法规范
+
+```js
+fadeTo([[speed],opacity,[easing],[fn]])
+```
+
+2.调整参数
+
+1）`opacity透明度必须写，取值0~1之间`
+
+2）speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000),`必须写`
+
+3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
+
+4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
+
+#### 代码演示
+
+```js
+<body>
+    <button>淡入效果</button>
+    <button>淡出效果</button>
+    <button>淡入淡出切换</button>
+    <button>修改透明度</button>
+    <div></div>
+    <script>
+        $(function() {
+            $("button").eq(0).click(function() {
+                // 淡入 fadeIn()
+                $("div").fadeIn(1000);
+            })
+            $("button").eq(1).click(function() {
+                // 淡出 fadeOut()
+                $("div").fadeOut(1000);
+            })
+            $("button").eq(2).click(function() {
+                // 淡入淡出切换 fadeToggle()
+                $("div").fadeToggle(1000);
+            });
+            $("button").eq(3).click(function() {
+                //  修改透明度 fadeTo() 这个速度和透明度要必须写
+                $("div").fadeTo(1000, 0.5);
+            });
+        });
+    </script>
+</body>
+```
+
 ### 事件切换
 
-```
+```JS
 hover([over],out)
 ```
 
@@ -271,7 +598,7 @@ hover([over],out)
 
 语法：
 
-```
+```JS
 $("div").hover(function(){},function(){})
 ```
 
@@ -304,43 +631,6 @@ $("div").hover(function(){
 	$(this).stop().slideToggle();
 })
 ```
-
-### 淡入淡出
-
-```
-$("button").eq(0).click(function(){
-	//淡入 fadeIn()
-	$("div").fadeIn(1000)
-})
-$("button").eq(1).click(function(){
-	//淡出 fadeOut()
-	$("div").fadeOut(1000)
-})
-$("button").eq(2).click(function(){
-	// 淡入淡出切换 fadeToggle()
-	$("div").fadeToggle(1000)
-})
-$("button").eq(3).click(function(){
-	// 修改透明度 fadeTo() 速度和透明度必须写
-	$("div").fadeTo(1000,0.5)
-})
-```
-
-#### 1.渐进方式调整到指定的透明度
-
-```
-fadeTo([speed],opacity,[easing],[fn])
-```
-
-#### 2.效果参数
-
-1)opacity透明度必须写,取值0~1之间
-
-2)speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）必须写
-
-3）easing：（Optional）用来指定切换效果，默认是"swing",可用参数"linear"
-
-4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
 
 ### 自定义动画
 
