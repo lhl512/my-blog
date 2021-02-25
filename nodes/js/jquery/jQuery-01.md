@@ -636,13 +636,13 @@ $("div").hover(function(){
 
 #### 1.语法：
 
-```
+```js
 animate(params,[speed],[easing],[fn])
 ```
 
 #### 2.参数
 
-1)paeams:想要改变的样式属性，以对象形式传递，必须写。
+1)**paeams:想要改变的样式属性，以对象形式传递，必须写**。
 
 2)speed：三种预定速度之一（"slow","normal","fast"）或表示动画时长的毫秒数值（如：1000）必须写
 
@@ -650,88 +650,190 @@ animate(params,[speed],[easing],[fn])
 
 4) fn:回调函数，在动画完成时执行的函数，每个元素 执行一次
 
-```
+#### 代码演示
+
+```js
 $("button").click(function(){
 	$("div").animate({
-		left:500
-	})
+		left:500,
+        top:300,
+        opactity:.4,
+        width:500
+	},500)
 })
 ```
 
 ## jQuery属性操作
 
+​		jQuery 常用属性操作有三种：prop() / attr() / data() 
+
 ### 1.设置或获取元素固有属性值prop()
 
-```
+​		所谓元素固有属性就是元素本身自带的属性，比如 <a> 元素里面的 href ，比如 <input> 元素里面的 type。
+
+```js
 $("a").prop("href")
 ```
 
 1.获取
 
-```
+```js
 $("a").prop("属性名")
 ```
 
 2.设置
 
-```
+```js
 $("a").prop("属性名","属性值")
 ```
 
+​		注意：prop() 除了普通属性操作，更适合操作表单属性：disabled / checked / selected 等。
+
 ### 2.设置或获取元素自定义属性值attr()
 
-```
+​		用户自己给元素添加的属性，我们称为自定义属性。 比如给 div 添加 index =“1”。
+
+```js
 $("div").attr("index")
+```
+
+1.获取
+
+```js
+$("div").attr("属性")
+```
+
+2.设置
+
+```js
+$("div").attr("属性","属性值")
 ```
 
 ### 3.数据缓存data()
 
 data()方法可以在指定的元素上存取数据，并不会修改DOM元素结构，一旦页面刷新，之前存放的数据都将被移除
 
+语法
+
+1.附加数据语法
+
+```js
+ data("name","value") //向被选元素附加数据
+```
+
+2.获取数据语法
+
+```js
+date("name") //向被选元素获取数据
+```
+
+​		注意：同时，还可以读取 HTML5 自定义属性  data-index ，得到的是数字型。
+
+#### 代码演示
+
+```js
+<body>
+    <a href="http://www.itcast.cn" title="都挺好">都挺好</a>
+    <input type="checkbox" name="" id="" checked>
+    <div index="1" data-index="2">我是div</div>
+    <span>123</span>
+    <script>
+        $(function() {
+            //1. element.prop("属性名") 获取元素固有的属性值
+            console.log($("a").prop("href"));
+            $("a").prop("title", "我们都挺好");
+            $("input").change(function() {
+                console.log($(this).prop("checked"));
+            });
+            // console.log($("div").prop("index"));
+            // 2. 元素的自定义属性 我们通过 attr()
+            console.log($("div").attr("index"));
+            $("div").attr("index", 4);
+            console.log($("div").attr("data-index"));
+            // 3. 数据缓存 data() 这个里面的数据是存放在元素的内存里面
+            $("span").data("uname", "andy");
+            console.log($("span").data("uname"));
+            // 这个方法获取data-index h5自定义属性 第一个 不用写data-  而且返回的是数字型
+            console.log($("div").data("index"));
+        })
+    </script>
+</body>
+```
+
 ## jQuery内容文本值
 
-主要针对元素的内容还有表单的值操作
+​		jQuery的文本属性值常见操作有三种：html() / text() / val() ; 分别对应JS中的 innerHTML 、innerText 和 value 属性。
 
 ### 1.普通元素内容html()  (相当于原生innerHTML)
 
-```
+**语法**
+
+```js
 html()  //获取元素内容
 html("内容")   //设置元素的内容
 ```
 
 ### 2.普通文本内容text() (相当于原生innerText)
 
-```
+**语法**
+
+```js
 text()	//获取元素文本内容
 text("内容")	//设置元素文本内容
 ```
 
 ### 3.表单值
 
-```
+**语法**
+
+```js
 val()
 val("内容")
 ```
 
+#### 代码演示
+
+```js
+<body>
+    <div>
+        <span>我是内容</span>
+    </div>
+    <input type="text" value="请输入内容">
+    <script>
+        // 1. 获取设置元素内容 html()
+        console.log($("div").html());
+        // $("div").html("123");
+        // 2. 获取设置元素文本内容 text()
+        console.log($("div").text());
+        $("div").text("123");
+        // 3. 获取设置表单值 val()
+        console.log($("input").val());
+        $("input").val("123");
+    </script>
+</body>
+```
+
 ## jQuery元素操作
 
-主要是**遍历**、创建、添加、删除元素操作
+​		jQuery 元素操作主要讲的是用jQuery方法，操作标签的遍历、创建、添加、删除等操作。
 
 ### 1.遍历元素
 
-jQuery隐式迭代是对同一类元素做了同样的操作，如果想要给同一类元素做不同操作，就需要用到遍历。
+​		jQuery隐式迭代是对同一类元素做了同样的操作，如果想要给同一类元素做不同操作，就需要用到遍历。
 
 **语法1：**
 
-```
+```js
 $("div").each(function (index,domElm){})
 ```
 
-1.each()方法遍历匹配的每一个元素，主要用DOM处理。each每一个
+1. each()方法遍历匹配的每一个元素，主要用DOM处理。each每一个
 
-2.里面的回调函数有两个参数：index是每个元素的索引号：demEle是每个DOM元素对象，不是jQuery对象
+2. 里面的回调函数有两个参数：index是每个元素的索引号：demEle是**每个DOM元素对象，不是jQuery对象**
 
-3.所以要想使用jquer方法，需要给每个都没元素转化为jQuery对象$(domEle)
+3. **所以要想使用jquer方法，需要给每个都没元素转化为jQuery对象$(domEle)**
+
+   ​	注意：此方法用于遍历 jQuery 对象中的每一项，回调函数中元素为 DOM 对象，想要使用 jQuery 方法需要转换。
 
 ```html
 <div>1</div>
@@ -746,13 +848,14 @@ $("div").each(function (index,domElm){})
 
 **语法2：**
 
-```
+```js
 $.each(object,function(index,element){})
 ```
 
-1.$.each()方法可用于遍历任何对象，主要用于数据处理，比如数组，对象
+1. $.each()方法可用于遍历任何对象，主要用于数据处理，比如数组，对象
 
-2.里面的函数有2个参数：index是每个元素的索引号；element遍历内容
+2. 里面的函数有2个参数：index是每个元素的索引号；element遍历内容
+
 
 ```html
 <div>1</div>
@@ -761,12 +864,14 @@ $.each(object,function(index,element){})
 <script>
     let arr = [1,2,3]
     // $.each()方法遍历元素 主要用于遍历数据，处理数据
-	$.each($("div"),function(i,ele){})
-	$.each(arr,function(i,ele){})
+	$.each($("div"),function(index,element){})
+	$.each(arr,function(index,element){})
 </script>
 ```
 
 ### 2.创建元素
+
+#### 演示代码
 
 ```js
 $(function(){
@@ -823,9 +928,13 @@ element.html("") //清空匹配元素内容
 
 ## jQuery尺寸、位置操作
 
-### 1.jQuery尺寸
+​		jQuery中分别为我们提供了两套快速获取和设置元素尺寸和位置的API，方便易用，内容如下。
 
-| 尺寸                                 | 用法                                               |
+### 1.jQuery 尺寸操作
+
+ 		jQuery 尺寸操作包括元素宽高的获取和设置，且不一样的API对应不一样的盒子模型。
+
+| 语法                                 | 用法                                               |
 | ------------------------------------ | -------------------------------------------------- |
 | width() / height()                   | 取得匹配元素宽度和高度 只算width / height          |
 | innerWidth() / innerHeight           | 取得匹配元素宽度和高度 包含 padding                |
@@ -836,9 +945,35 @@ element.html("") //清空匹配元素内容
 - 如果参数时数字，则是修改相应值
 - 参数可以不写单位
 
-### jQuery位置
+#### 演示代码
 
-位置主要有三个：**offset()**、position()、scrollTop()/scrollLefr()
+```js
+<body>
+    <div></div>
+    <script>
+        $(function() {
+            // 1. width() / height() 获取设置元素 width和height大小 
+            console.log($("div").width());
+            // $("div").width(300);
+
+            // 2. innerWidth() / innerHeight()  获取设置元素 width和height + padding 大小 
+            console.log($("div").innerWidth());
+
+            // 3. outerWidth()  / outerHeight()  获取设置元素 width和height + padding + border 大小 
+            console.log($("div").outerWidth());
+
+            // 4. outerWidth(true) / outerHeight(true) 获取设置 width和height + padding + border + margin
+            console.log($("div").outerWidth(true));
+        })
+    </script>
+</body>
+```
+
+​		注意：有了这套 API 我们将可以快速获取和子的宽高，至于其他属性想要获取和设置，还要使用 css() 等方法配合。
+
+### jQuery 位置操作
+
+​		jQuery的位置主要有三个：**offset()**、position()、scrollTop()/scrollLefr()
 
 #### 1.offset()设置或获取元素偏移
 
@@ -873,6 +1008,64 @@ $("son").position() //返回对象
 $(windwo).scroll(function(){
 	$(cocument).scrollTop();
 })
+```
+
+#### 演示代码
+
+```js
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+        
+    <div class="back">返回顶部</div>
+    <div class="container"></div>
+   
+    <script>
+        $(function() {
+            // 1. 获取设置距离文档的位置（偏移） offset
+            console.log($(".son").offset());
+            console.log($(".son").offset().top);
+            // $(".son").offset({
+            //     top: 200,
+            //     left: 200
+            // });
+      
+            // 2. 获取距离带有定位父级位置（偏移） position   如果没有带有定位的父级，则以文档为准
+            // 这个方法只能获取不能设置偏移
+            console.log($(".son").position());
+            // $(".son").position({
+            //     top: 200,
+            //     left: 200
+            // });
+      
+      		// 3. 被卷去的头部
+      		$(document).scrollTop(100);
+            // 被卷去的头部 scrollTop()  / 被卷去的左侧 scrollLeft()
+            // 页面滚动事件
+            var boxTop = $(".container").offset().top;
+            $(window).scroll(function() {
+                // console.log(11);
+                console.log($(document).scrollTop());
+                if ($(document).scrollTop() >= boxTop) {
+                    $(".back").fadeIn();
+                } else {
+                    $(".back").fadeOut();
+                }
+            });
+            // 返回顶部
+            $(".back").click(function() {
+                // $(document).scrollTop(0);
+                $("body, html").stop().animate({
+                    scrollTop: 0
+                });
+                // $(document).stop().animate({
+                //     scrollTop: 0
+                // }); 不能是文档而是 html和body元素做动画
+            })
+        })
+    </script>
+</body>
 ```
 
 ## jQuery事件注册
