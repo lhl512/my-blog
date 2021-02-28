@@ -73,7 +73,8 @@ module.exports = {
                     "title": "jQuery",
                     "collapsable": true,
                     "children": [
-                        "/nodes/js/jquery/jQuery-01.md"
+                        "/nodes/js/jquery/jQuery-01.md",
+                        "/nodes/js/jquery/数据的可视化.md"
                     ]
                 },
                 {
