@@ -101,6 +101,13 @@ module.exports = {
                         "/nodes/js/WedApi/WedApi-01.md"
                     ]
                 },
+                {
+                    "title": "Ajax",
+                    "collapsable": true,
+                    "children": [
+                        "/nodes/js/ajax/ajax-01.md"
+                    ]
+                },
             ]
         }
     ]
